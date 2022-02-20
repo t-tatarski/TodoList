@@ -1,6 +1,8 @@
 package pl.codent.todolist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,12 +12,26 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        List<Doctor> doctors = new ArrayList<>();
+           doctors.add(new Doctor("Florczykiewicz",false));
+           doctors.add(new Doctor("Prawandowski",false));
+           doctors.add(new Doctor("Kuropatwa",true));
+           doctors.add(new Doctor("Wybyła",false));
+           doctors.add(new Doctor("Kozłowicz",false));
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         boolean firstRunApp = preferences.getBoolean("firstrun",true);
         if (!firstRunApp) {showToast("witaj pierwszy raz");
@@ -25,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         showToast("witaj nie pierwszy raz");
         }
+
+        RecyclerView recyclerView = findViewById(R.id.recyclervw);
+         adapter = new CustomAdapter(doctors);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
