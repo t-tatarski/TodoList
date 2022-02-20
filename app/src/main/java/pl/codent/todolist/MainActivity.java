@@ -18,16 +18,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static CustomAdapter adapter;
-
+    public static List<Doctor> doctors;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        List<Doctor> doctors = new ArrayList<>();
-           doctors.add(new Doctor("Florczykiewicz",false));
-           doctors.add(new Doctor("Prawandowski",false));
-           doctors.add(new Doctor("Kuropatwa",true));
-           doctors.add(new Doctor("Wybyła",false));
-           doctors.add(new Doctor("Kozłowicz",false));
-
+        doctors = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

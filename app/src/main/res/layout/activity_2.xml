@@ -2,32 +2,48 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addbuton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity2">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="283dp"
-        android:layout_height="62dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="podyktuj..."
-        android:textSize="24sp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="345dp"
+        android:layout_height="191dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/micBtn"
-        android:layout_width="53dp"
-        android:layout_height="76dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796"
-        app:srcCompat="@android:drawable/presence_audio_online" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:background="@android:drawable/toast_frame">
+
+            <TextView
+                android:id="@+id/textViewSTT"
+                android:layout_width="206dp"
+                android:layout_height="61dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="podyktuj..."
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.269" />
+
+            <ImageView
+                android:id="@+id/micBtn"
+                android:layout_width="57dp"
+                android:layout_height="61dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSTT"
+                app:srcCompat="@android:drawable/ic_btn_speak_now" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
