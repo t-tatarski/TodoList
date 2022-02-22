@@ -1,40 +1,36 @@
 package pl.codent.todolist;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.datastore.preferences.core.Preferences;
+import androidx.datastore.preferences.core.PreferencesKeys;
+import androidx.datastore.preferences.rxjava2.RxPreferenceDataStoreBuilder;
+import androidx.datastore.rxjava2.RxDataStore;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
     public static CustomAdapter adapter;
     public static List<Doctor> doctors;
+    String name = "settings";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         doctors = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        boolean firstRunApp = preferences.getBoolean("firstrun",true);
-        if (!firstRunApp) {showToast("witaj pierwszy raz");
-        }else{
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("firstrun",true);
-        editor.commit();
-        showToast("witaj nie pierwszy raz");
-        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclervw);
          adapter = new CustomAdapter(doctors);
