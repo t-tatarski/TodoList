@@ -1,6 +1,7 @@
 package pl.codent.todolist;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -22,21 +23,27 @@ public class MainActivity extends AppCompatActivity {
 
     public static CustomAdapter adapter;
     public static List<Doctor> doctors;
-    String name = "settings";
+    public static final String STOREDDAT = "storedData";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         doctors = new ArrayList<>();
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclervw);
-         adapter = new CustomAdapter(doctors);
+        adapter = new CustomAdapter(doctors);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {

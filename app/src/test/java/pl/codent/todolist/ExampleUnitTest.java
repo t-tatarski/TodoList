@@ -1,5 +1,6 @@
 package pl.codent.todolist;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +13,17 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        //given
+        Doctor docTest = new Doctor();
+        docTest.setName("Nowak");
+        docTest.setDone(true);
+
+        //when
+        boolean resultDone = docTest.getDone();
+        String  resultName = docTest.getName();
+
+        //then
+        Assert.assertEquals("Nowak",resultName);
+        Assert.assertEquals(true, resultDone);
     }
 }
