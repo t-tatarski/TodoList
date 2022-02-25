@@ -3,6 +3,7 @@ package pl.codent.todolist;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,19 +25,32 @@ public class MainActivity extends AppCompatActivity {
     public static CustomAdapter adapter;
     public static List<Doctor> doctors;
     public static final String STOREDDAT = "storedData";
-
+    public static SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         doctors = new ArrayList<>();
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-
-
+        boolean firstRun = preferences.getBoolean("prefFirstRun", true);
+        if (!firstRun) {
+             sp = getSharedPreferences("app",MODE_PRIVATE);
+            String entryName1 = sp.getString("entryN1", "");
+            String entryName2 = sp.getString("entryN2", "");
+            String entryName3 = sp.getString("entryN3", "");
+            String entryName4 = sp.getString("entryN4", "");
+            String entryName5 = sp.getString("entryN5", "");
+            String entryName6 = sp.getString("entryN6", "");
+            doctors.add(new Doctor(entryName1.toString(), false));
+            doctors.add(new Doctor(entryName2.toString(), false));
+            doctors.add(new Doctor(entryName3.toString(), false));
+            doctors.add(new Doctor(entryName4.toString(), false));
+            doctors.add(new Doctor(entryName5.toString(), false));
+            doctors.add(new Doctor(entryName6.toString(), false));
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclervw);
         adapter = new CustomAdapter(doctors);

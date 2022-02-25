@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
@@ -63,6 +64,10 @@ public class Activity2 extends AppCompatActivity {
                 tv_Speech_to_text.setText(
                         Objects.requireNonNull(result).get(0));
                 MainActivity.doctors.add(new Doctor(result.get(0).toUpperCase(Locale.ROOT),false));
+                SharedPreferences sp=getSharedPreferences("app",MODE_PRIVATE);
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putString("entryN1",result.get(0));
+                editor.apply();
                 MainActivity.adapter.notifyDataSetChanged();
 
 
