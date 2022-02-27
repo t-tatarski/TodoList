@@ -36,20 +36,25 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         boolean firstRun = preferences.getBoolean("prefFirstRun", true);
-        if (!firstRun) {
+        if (firstRun) {
              sp = getSharedPreferences("app",MODE_PRIVATE);
             String entryName1 = sp.getString("entryN1", "");
             String entryName2 = sp.getString("entryN2", "");
             String entryName3 = sp.getString("entryN3", "");
             String entryName4 = sp.getString("entryN4", "");
             String entryName5 = sp.getString("entryN5", "");
-            String entryName6 = sp.getString("entryN6", "");
-            doctors.add(new Doctor(entryName1.toString(), false));
-            doctors.add(new Doctor(entryName2.toString(), false));
-            doctors.add(new Doctor(entryName3.toString(), false));
-            doctors.add(new Doctor(entryName4.toString(), false));
-            doctors.add(new Doctor(entryName5.toString(), false));
-            doctors.add(new Doctor(entryName6.toString(), false));
+
+            doctors.add(new Doctor(entryName1, false));
+            doctors.add(new Doctor(entryName2, false));
+            doctors.add(new Doctor(entryName3, false));
+            doctors.add(new Doctor(entryName4, false));
+            doctors.add(new Doctor(entryName5, false));
+        }else{
+            sp = getSharedPreferences("app",MODE_PRIVATE);
+            String entryName1 = sp.getString("entry1","");
+            if (entryName1!="")doctors.add(new Doctor(entryName1, false));
+            String entryName2 = sp.getString("entry2","");
+            if (entryName2!="")doctors.add(new Doctor(entryName2, false));
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclervw);
